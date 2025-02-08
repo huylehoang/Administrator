@@ -1,5 +1,14 @@
 import Foundation
 
+// MARK: - Protocol for Activity Indicator
+/// `ActivityIndicatorType` defines the interface for managing the state of a loading indicator.
+/// Provides asynchronous methods to activate (`show`) and deactivate (`hide`)
+/// the loading indicator.
+protocol ActivityIndicatorType {
+    func show() async
+    func hide() async
+}
+
 final class ActivityIndicatorInterceptor: InterceptorType {
     private let activityIndicator: ActivityIndicatorType
 
