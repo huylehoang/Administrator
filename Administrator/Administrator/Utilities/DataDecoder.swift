@@ -7,7 +7,13 @@ protocol DataDecoderType {
 final class DataDecoder: DataDecoderType {
     private let decoder: JSONDecoder
 
-    init(decoder: JSONDecoder = JSONDecoder()) {
+    static var defaultDecoder: JSONDecoder {
+        let decoder = JSONDecoder()
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
+        return decoder
+    }
+
+    init(decoder: JSONDecoder = DataDecoder.defaultDecoder) {
         self.decoder = decoder
     }
 
