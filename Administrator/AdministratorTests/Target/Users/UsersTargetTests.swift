@@ -128,9 +128,9 @@ final class UsersTargetTests: XCTestCase {
             avatarUrl: URL(string: "https://example.com/avatar2.png")!,
             htmlUrl: URL(string: "https://example.com/profile2")!
         )
-        let data1 = UsersTarget.DataType(users: [user1, user2])
-        let data2 = UsersTarget.DataType(users: [user1, user2])
-        let data3 = UsersTarget.DataType(users: [user1])
+        let data1 = UsersTarget.DataType(items: [user1, user2])
+        let data2 = UsersTarget.DataType(items: [user1, user2])
+        let data3 = UsersTarget.DataType(items: [user1])
         XCTAssertEqual(data1, data2)
         XCTAssertNotEqual(data1, data3)
     }
@@ -162,7 +162,7 @@ final class UsersTargetTests: XCTestCase {
             avatarUrl: URL(string: "https://example.com/avatar2.png")!,
             htmlUrl: URL(string: "https://example.com/profile2")!
         )
-        let data = UsersTarget.DataType(users: [user1, user2])
+        let data = UsersTarget.DataType(items: [user1, user2])
         let expectedDescription = """
         DataType(items:
         Item(id: 1, login: user1, avatarUrl: https://example.com/avatar1.png, \

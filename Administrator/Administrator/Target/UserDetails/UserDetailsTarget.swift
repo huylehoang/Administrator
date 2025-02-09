@@ -10,7 +10,7 @@ struct UserDetailsTarget: TargetType {
     var headers: [String : String]? = nil
 
     init(loginUserName: String) {
-        path = "/users/\(loginUserName)"
+        path = "/users/\(loginUserName.lowercased())"
     }
 }
 

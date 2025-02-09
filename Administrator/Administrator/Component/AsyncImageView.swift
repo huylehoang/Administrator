@@ -14,9 +14,15 @@ struct AsyncImageView: View {
     var body: some View {
         ZStack {
             if let image {
-                Image(uiImage: image)
-                    .resizable()
-                    .scaledToFill()
+                RoundedRectangle(cornerRadius: 12)
+                    .fill(Color.gray.opacity(0.1))
+                    .overlay {
+                        Image(uiImage: image)
+                            .resizable()
+                            .scaledToFill()
+                            .clipShape(Circle())
+                            .padding(8)
+                    }
             } else if isLoading {
                 ProgressView()
                     .progressViewStyle(CircularProgressViewStyle())
