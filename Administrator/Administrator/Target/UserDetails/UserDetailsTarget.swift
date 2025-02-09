@@ -18,7 +18,7 @@ extension UserDetailsTarget {
     struct DataType: Codable, Equatable, CustomStringConvertible {
         let login: String
         let avatarUrl: URL
-        let htmlUrl: URL
+        let blog: URL
         let location: String
         let followers: Int
         let following: Int
@@ -27,7 +27,7 @@ extension UserDetailsTarget {
             """
             Item(login: \(login), \
             avatarUrl: \(avatarUrl.absoluteString)) \
-            htmlUrl: \(htmlUrl.absoluteString) \
+            blog: \(blog.absoluteString) \
             location: \(location) \
             followers: \(followers) \
             following: \(following)

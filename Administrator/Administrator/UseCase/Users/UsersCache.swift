@@ -42,11 +42,7 @@ final class UsersCache: UsersCacheType {
         guard let data = storage.data(forKey: key) else {
             return []
         }
-        do {
-            return try decoder.decode(data: data) ?? []
-        } catch {
-            return []
-        }
+        return (try? decoder.decode(data: data)) ?? []
     }
 
     func getLastUserId() -> Int? {

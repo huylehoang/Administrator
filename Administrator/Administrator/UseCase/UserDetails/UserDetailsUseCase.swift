@@ -37,7 +37,7 @@ extension UserDetailsTarget.DataType {
         UserDetails(
             login: login,
             avatarUrl: avatarUrl,
-            htmlUrl: htmlUrl,
+            blog: blog,
             location: location,
             followers: followers,
             following: following
