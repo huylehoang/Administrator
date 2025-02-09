@@ -21,7 +21,7 @@ final class UserDetailsViewModelTests: XCTestCase {
         let expectedDetails = UserDetails(
             login: "jvantuyl",
             avatarUrl: URL(string: "https://avatars.githubusercontent.com/u/101?v=4")!,
-            htmlUrl: URL(string: "https://github.com/jvantuyl")!,
+            blog: URL(string: "http://souja.net")!,
             location: "Plumas County, California, USA",
             followers: 63,
             following: 15

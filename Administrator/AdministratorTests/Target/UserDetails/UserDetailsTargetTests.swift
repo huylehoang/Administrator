@@ -39,7 +39,7 @@ final class UserDetailsTargetTests: XCTestCase {
         {
             "login": "octocat",
             "avatar_url": "https://github.com/images/error/octocat_happy.gif",
-            "html_url": "https://github.com/octocat",
+            "blog": "https://github.com/octocat",
             "location": "San Francisco",
             "followers": 100,
             "following": 50
@@ -52,7 +52,7 @@ final class UserDetailsTargetTests: XCTestCase {
             decoded?.avatarUrl.absoluteString,
             "https://github.com/images/error/octocat_happy.gif"
         )
-        XCTAssertEqual(decoded?.htmlUrl.absoluteString, "https://github.com/octocat")
+        XCTAssertEqual(decoded?.blog.absoluteString, "https://github.com/octocat")
         XCTAssertEqual(decoded?.location, "San Francisco")
         XCTAssertEqual(decoded?.followers, 100)
         XCTAssertEqual(decoded?.following, 50)
@@ -62,7 +62,7 @@ final class UserDetailsTargetTests: XCTestCase {
         let user1 = UserDetailsTarget.DataType(
             login: "octocat",
             avatarUrl: URL(string: "https://github.com/octocat.png")!,
-            htmlUrl: URL(string: "https://github.com/octocat")!,
+            blog: URL(string: "https://github.com/octocat")!,
             location: "San Francisco",
             followers: 100,
             following: 50
@@ -70,7 +70,7 @@ final class UserDetailsTargetTests: XCTestCase {
         let user2 = UserDetailsTarget.DataType(
             login: "octocat",
             avatarUrl: URL(string: "https://github.com/octocat.png")!,
-            htmlUrl: URL(string: "https://github.com/octocat")!,
+            blog: URL(string: "https://github.com/octocat")!,
             location: "San Francisco",
             followers: 100,
             following: 50
@@ -78,7 +78,7 @@ final class UserDetailsTargetTests: XCTestCase {
         let user3 = UserDetailsTarget.DataType(
             login: "not-octocat",
             avatarUrl: URL(string: "https://github.com/not-octocat.png")!,
-            htmlUrl: URL(string: "https://github.com/not-octocat")!,
+            blog: URL(string: "https://github.com/not-octocat")!,
             location: "New York",
             followers: 10,
             following: 5

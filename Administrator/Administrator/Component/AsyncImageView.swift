@@ -39,15 +39,13 @@ struct AsyncImageView: View {
 private extension AsyncImageView {
     @MainActor
     func loadImage() {
-        guard !isLoading, image == nil else { return }
-        isLoading = true
-        Task {
-            defer { isLoading = false }
-            switch await service.downloadImage(from: url) {
-            case .success(let image):
-                self.image = image
-            case .failure:
-                break
+        if !isLoading && image == nil {
+            isLoading = true
+            Task {
+                defer { isLoading = false }
+                if case .success(let image) = await service.downloadImage(from: url) {
+                    self.image = image
+                }
             }
         }
     }

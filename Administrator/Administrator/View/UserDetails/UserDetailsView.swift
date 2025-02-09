@@ -24,7 +24,9 @@ struct UserDetailsView: View {
             }
             .navigationTitle("User Details")
         }
-        .onAppear {
+        .overlay(ActivityIndicatorView())
+        .overlay(ErrorView(errorMessage: $viewModel.errorMessage))
+        .onViewDidLoad {
             Task {
                 await viewModel.loadUserDetails()
             }
@@ -66,11 +68,11 @@ struct FollowSection: View {
 
     var body: some View {
         HStack {
-            Spacer() // Pushes the first FollowInfo towards center
+            Spacer()
             FollowInfo(icon: "person.2.fill", count: user.followers, label: "Followers")
-            Spacer(minLength: 40) // Ensures some spacing between them
+            Spacer(minLength: 40)
             FollowInfo(icon: "person.fill.checkmark", count: user.following, label: "Following")
-            Spacer() // Pushes the second FollowInfo towards center
+            Spacer()
         }
         .frame(maxWidth: .infinity, alignment: .center)
         .padding()
@@ -104,15 +106,15 @@ struct BlogSection: View {
         VStack(alignment: .leading, spacing: 8) {
             Text("Blog")
                 .font(.headline)
-            Link(destination: user.htmlUrl) {
-                Text(user.htmlUrl.absoluteString)
+            Link(destination: user.blog) {
+                Text(user.blog.absoluteString)
                     .foregroundColor(.blue)
                     .underline()
                     .lineLimit(1)
                     .truncationMode(.tail)
             }
         }
-        .frame(maxWidth: .infinity, alignment: .leading) // Aligns the entire VStack to leading
+        .frame(maxWidth: .infinity, alignment: .leading)
         .padding()
     }
 }

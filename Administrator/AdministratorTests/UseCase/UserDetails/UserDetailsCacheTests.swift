@@ -9,7 +9,7 @@ final class UserDetailsCacheTests: XCTestCase {
     private let testUser = UserDetailsTarget.DataType(
         login: "testUser",
         avatarUrl: URL(string: "https://example.com/avatar.png")!,
-        htmlUrl: URL(string: "https://example.com")!,
+        blog: URL(string: "https://example.com")!,
         location: "Test Location",
         followers: 100,
         following: 50

@@ -55,6 +55,7 @@ struct UserRow: View {
             HStack(spacing: 12) {
                 AsyncImageView(url: user.avatarUrl)
                     .frame(width: 66, height: 66)
+                    .accessibilityIdentifier("image_\(user.login)")
                 VStack(alignment: .leading, spacing: 4) {
                     Text(user.login)
                         .font(.headline)
@@ -67,7 +68,6 @@ struct UserRow: View {
                             .truncationMode(.tail)
                     }
                 }
-
                 Spacer()
             }
             .padding(12)
