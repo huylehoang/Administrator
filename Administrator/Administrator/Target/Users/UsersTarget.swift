@@ -43,8 +43,8 @@ extension UsersTarget {
             items = try container.decode([Item].self)
         }
 
-        init(users: [Item]) {
-            self.items = users
+        init(items: [Item]) {
+            self.items = items
         }
     }
 }

@@ -28,6 +28,13 @@ final class UserDetailsUseCaseTests: XCTestCase {
         super.tearDown()
     }
 
+    func test_fetchUserDetails_usesCorrectTarget() async {
+        mockCache.cachedUserDetails = nil
+        mockApiService.failure = ApiError.unknown
+        _ = await useCase.fetchUserDetails(loginUserName: "testUser")
+        XCTAssertTrue(mockApiService.target is UserDetailsTarget)
+    }
+
     func test_fetchUserDetails_shouldReturnCachedData() async {
         mockCache.cachedUserDetails = testUserDetailsTargetData
         let result = await useCase.fetchUserDetails(loginUserName: "testUser")

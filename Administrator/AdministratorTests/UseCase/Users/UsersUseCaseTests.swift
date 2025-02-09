@@ -20,9 +20,15 @@ final class UsersUseCaseTests: XCTestCase {
         super.tearDown()
     }
 
+    func test_fetchUsers_usesCorrectTarget() async {
+        mockApiService.success = UsersTarget.DataType(items: [])
+        _ = await useCase.fetchUsers()
+        XCTAssertTrue(mockApiService.target is UsersTarget)
+    }
+
     func test_fetchUsers_withoutCache_shouldFetchFromAPI() async {
         let expectedUsers = mockUsers()
-        mockApiService.success = UsersTarget.DataType(users: expectedUsers)
+        mockApiService.success = UsersTarget.DataType(items: expectedUsers)
         let result = await useCase.fetchUsers()
         switch result {
         case .success(let users):
@@ -57,11 +63,20 @@ final class UsersUseCaseTests: XCTestCase {
         }
     }
 
+    func test_loadMoreUsers_usesCorrectTarget() async {
+        let cachedUsers = mockUsers()
+        mockCache.saveUsers(cachedUsers)
+        mockApiService.failure = ApiError.unknown
+        useCase = UsersUseCase(apiService: mockApiService, cache: mockCache)
+        _ = await useCase.loadMoreUsers()
+        XCTAssertTrue(mockApiService.target is UsersTarget)
+    }
+
     func test_loadMoreUsers_shouldFetchFromAPI() async {
         let cachedUsers = mockUsers()
         let newUsers = mockUsers(startingId: cachedUsers.last?.id ?? 1 + 1)
         mockCache.saveUsers(cachedUsers)
-        mockApiService.success = UsersTarget.DataType(users: newUsers)
+        mockApiService.success = UsersTarget.DataType(items: newUsers)
         useCase = UsersUseCase(apiService: mockApiService, cache: mockCache)
         let result = await useCase.loadMoreUsers()
         switch result {
